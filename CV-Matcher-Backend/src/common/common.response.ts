@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import statusCode from "http-status-codes";
+import statusCode, { StatusCodes } from "http-status-codes";
 
 function RouteNotFound(req: Request, res: Response, next: NextFunction) {
   return res.status(statusCode.NOT_FOUND).json({
@@ -7,4 +7,17 @@ function RouteNotFound(req: Request, res: Response, next: NextFunction) {
   });
 }
 
-export { RouteNotFound };
+function sendGenericRespone<T>(
+  res: Response,
+  data: T,
+  message: string,
+  statusCode = StatusCodes.ACCEPTED
+) {
+  return res.status(statusCode).json({
+    message: message,
+    data: data,
+    statusCode: statusCode,
+  });
+}
+
+export { RouteNotFound, sendGenericRespone };

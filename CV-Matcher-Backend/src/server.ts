@@ -33,10 +33,9 @@ class ExpressServer {
   async startServer() {
     try {
       const app = express();
-      this.databaseConnection().then(async (res) => {
-        await this.initalizeServerAndMiddleware(app);
-        await this.initalizeServer(app);
-      });
+      await this.databaseConnection();
+      await this.initalizeServerAndMiddleware(app);
+      await this.initalizeServer(app);
     } catch (err: UnknownOrAny) {
       cvLogger.error(
         `Error While Starting the Backend For the Express Server : ${JSON.stringify(
