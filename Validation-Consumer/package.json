@@ -1,0 +1,22 @@
+{
+  "name": "validation-consumer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:consumer": "nodemon index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "amqplib": "^0.10.8",
+    "ts-node": "^10.9.2",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.7",
+    "@types/node": "^24.0.1",
+    "typescript": "^5.8.3"
+  }
+}

@@ -16,6 +16,15 @@ const fileSchema = new mongoose.Schema({
     type: Number,
     required: [true, formattedMongooseRequiredMessage],
   },
+
+  fileMimeType: {
+    type: String,
+    required: [true, formattedMongooseRequiredMessage],
+  },
+  encoding: {
+    type: String,
+    required: [true, formattedMongooseRequiredMessage],
+  },
 });
 
 const FileManager = mongoose.model("FileManager", fileSchema);
