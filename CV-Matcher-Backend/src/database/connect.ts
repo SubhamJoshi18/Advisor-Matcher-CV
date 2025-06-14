@@ -4,7 +4,7 @@ import { UnknownOrAny } from "../types/data-type";
 import { cvLogger } from "../libs/logger/logger.libs";
 import { evaulateTheCondition, terminateServer } from "../common/common";
 import { writeDatabaseStatusOnJson } from "../helpers/json.helper";
-import statusConfig from "../constant/status.constant";
+import {statusConfig} from "../constant/status.constant";
 
 async function connectMongoDB() {
   let retryCount = 5;

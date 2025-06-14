@@ -2,18 +2,29 @@ import mongoose from "mongoose";
 import { formattedMongooseRequiredMessage } from "../../common/common";
 
 const fileSchema = new mongoose.Schema({
-  fileType: {
+  size: {
+    type: Number,
+    required: [true, formattedMongooseRequiredMessage],
+  },
+  filename: {
     type: String,
     required: [true, formattedMongooseRequiredMessage],
   },
 
-  fileSize: {
-    type: Number,
+  mimetype: {
+    type: String,
     required: [true, formattedMongooseRequiredMessage],
   },
-
-  fileName: {
-    type: Number,
+  fieldname: {
+    type: String,
+    required: [true, formattedMongooseRequiredMessage],
+  },
+  originalname: {
+    type: String,
+    required: [true, formattedMongooseRequiredMessage],
+  },
+  encoding: {
+    type: String,
     required: [true, formattedMongooseRequiredMessage],
   },
 });

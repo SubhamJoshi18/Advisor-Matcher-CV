@@ -6,4 +6,8 @@ export const statusConfig = {
   Failed: FAILED,
 } as const;
 
-export default statusConfig;
+export const fileProcessConfig = {
+  PROCESSING: "PROCESSING",
+  VALIDATING: "VALIDATING",
+  VALIDATED: "VALIDATED",
+};
