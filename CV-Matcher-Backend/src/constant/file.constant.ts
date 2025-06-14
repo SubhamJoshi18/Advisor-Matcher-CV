@@ -1,9 +1,10 @@
 const fileContent = [
-  "fileType",
-  "fileSize",
-  "fileName",
-  "fileMimeType",
   "encoding",
+  "originalname",
+  "fieldname",
+  "mimetype",
+  "filename",
+  "size",
 ];
 
 export default fileContent;

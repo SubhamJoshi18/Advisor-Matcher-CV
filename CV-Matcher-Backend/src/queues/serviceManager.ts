@@ -38,12 +38,21 @@ class Broker {
     });
   }
 
-  public async getBrokerChannel() {
+  public async getBrokerChannel() : Promise<amqp.Channel> {
     return new Promise(async (resolve, reject) => {
       if (!this.channel) {
         await this.initalizeBroker();
       }
-      resolve(this.channel);
+      resolve(this.channel as any);
+    });
+  }
+
+  public async closeBrokerChannel() {
+    return new Promise((resolve, reject) => {
+      if (this.channel) {
+        this.channel = null;
+      }
+      resolve(true);
     });
   }
 }

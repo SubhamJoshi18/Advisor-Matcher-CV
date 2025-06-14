@@ -11,6 +11,19 @@ async function readJSON(filePath: string) {
   return await fsPromise.readFile(filePath, { encoding: "utf-8" });
 }
 
+async function getLocalFilePath() {
+  return path.join(process.cwd(), "S3Bucket");
+}
+
+async function copyFile(sourcePath: string, destinationPath: string) {
+  try {
+    await fs.promises.copyFile(sourcePath, destinationPath);
+    cvLogger.info("File copied successfully!");
+  } catch (error) {
+    cvLogger.error("Error copying file:", error);
+  }
+}
+
 async function createDirectory(filePath: string) {
   if (!fs.existsSync(filePath)) {
     cvLogger.info(`File : ${filePath}  Does not Exists, Creating the File`);
@@ -63,5 +76,7 @@ export {
   writeFileInJson,
   deleteStatusJson,
   checkFileExists,
+  getLocalFilePath,
   readJSON,
+  copyFile,
 };

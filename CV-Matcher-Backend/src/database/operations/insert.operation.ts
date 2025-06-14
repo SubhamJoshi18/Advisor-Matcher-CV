@@ -14,15 +14,13 @@ class MongoInsert {
     return allPass;
   }
 
-  public async insertOperation(obj: object) {
-    if (this.validateSchema(obj)) {
-      const isInsert = await FileManager.create({
+  public async insertOperation(obj: object, manager: any) {
+    return new Promise(async (resolve, reject) => {
+      const isInsert = await manager.create({
         ...obj,
       });
-      return isInsert;
-    } else {
-      return null;
-    }
+      resolve(isInsert ? true : false);
+    });
   }
 }
 

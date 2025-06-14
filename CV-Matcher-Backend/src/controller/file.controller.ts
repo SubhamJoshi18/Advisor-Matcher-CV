@@ -9,11 +9,11 @@ async function processFileAsCV(
   req: Request,
   res: Response,
   next: NextFunction
-) : Promise<any> {
+): Promise<any> {
   try {
     const fileContent = req.file as Partial<IFileContent>;
     const apiResponse = await processCVFileService(fileContent);
-    const message = `The CV is Processing, Fetching the Match Advisor`;
+    const message = `The Process Has been Started, Processing the CV`;
     return sendGenericRespone(res, apiResponse, message);
   } catch (err: UnknownOrAny) {
     cvLogger.error(
