@@ -12,7 +12,21 @@ class QueueManager {
   }
 
   public async getChannel(): Promise<amqp.Channel | null> {
-    return this.channel;
+    if (!this.connection) {
+      await this.initalizeConnection();
+      return this.channel;
+    } else {
+      return this.channel;
+    }
+  }
+
+  public async closeChannel(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      if (this.channel) {
+        this.channel = null;
+      }
+      resolve(true);
+    });
   }
 
   public async initalizeConnection() {

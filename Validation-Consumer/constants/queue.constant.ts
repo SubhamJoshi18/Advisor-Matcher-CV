@@ -3,9 +3,11 @@ const validationQueueConstant = {
   queueExchange: "cv-exchange",
 };
 
-const directExchange = 'direct'
+const extractorQueueConstant = {
+  queueName: "cv:extractor-queue-consumer",
+  queueExchange: "cv-exchange",
+};
 
-export {
-    validationQueueConstant,
-    directExchange
-}
+const directExchange = "direct";
+
+export { validationQueueConstant, directExchange, extractorQueueConstant };

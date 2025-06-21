@@ -73,6 +73,8 @@ async function processCVFileService(content: Partial<IFileContent>) {
 
   const isClosed = await rabbitmqBroker.closeBrokerChannel();
 
+  await fileInstance.deleteFileByPath(content.path as string);
+
   if (typeof isPublish === "boolean" && !isPublish) {
     throw new HttpExceptions(
       statusCode.BAD_GATEWAY,
