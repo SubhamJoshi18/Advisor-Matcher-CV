@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "amqplib": "^0.10.8",
+    "pdf2json": "^3.1.4",
     "ts-node": "^10.9.2",
     "winston": "^3.17.0"
   },
