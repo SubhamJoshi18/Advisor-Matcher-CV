@@ -7,11 +7,9 @@ export const saveCvToElastic = async (
   cvPayload: CVPayload
 ): Promise<boolean> => {
   try {
-    // Check if index exists
     const indexExists = await client.indices.exists({ index: "cv_profiles" });
 
     if (!indexExists) {
-      // Create the index with detailed mappings for CV sections
       await client.indices.create({
         index: "cv_profiles",
         body: {
@@ -74,10 +72,9 @@ export const saveCvToElastic = async (
       elasticLogger.info("ℹ️ Created index cv_profiles with mappings");
     }
 
-    // Index the document (flatten the sections)
     const document = {
       pdf_path: cvPayload.pdf_path,
-      ...cvPayload.sections, // sections fields like summary, experience, etc.
+      ...cvPayload.sections,
       created_at: new Date().toISOString(),
     };
 

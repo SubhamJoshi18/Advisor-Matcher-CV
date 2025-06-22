@@ -28,13 +28,11 @@ async function seedProfessors() {
   const elasticClient = client;
 
   try {
-    // Check if index exists
     const indexExists = await elasticClient.indices.exists({
       index: "professor_advisor_index",
     });
 
     if (!indexExists) {
-      // Create index with optional mappings/settings
       await elasticClient.indices.create({
         index: "professor_advisor_index",
         body: {
@@ -52,7 +50,6 @@ async function seedProfessors() {
       elasticLogger.info("ℹ️ Created index professor_advisor_index");
     }
 
-    // Now count documents
     const countResponse = await elasticClient.count({
       index: "professor_advisor_index",
       query: {
@@ -67,7 +64,6 @@ async function seedProfessors() {
       return;
     }
 
-    // Index professors
     for (const professor of professors) {
       await elasticClient.index({
         index: "professor_advisor_index",
