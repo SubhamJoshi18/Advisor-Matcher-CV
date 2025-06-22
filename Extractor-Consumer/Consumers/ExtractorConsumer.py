@@ -17,7 +17,6 @@ def start_extractor_consumer(channel):
                 ch.basic_ack(delivery_tag=method.delivery_tag)
             except Exception as processing_error:
                 print(f"Error processing message: {processing_error}")
-
                 ch.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
 
 

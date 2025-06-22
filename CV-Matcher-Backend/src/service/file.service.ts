@@ -7,11 +7,18 @@ import statusCode from "http-status-codes";
 import getMongoInsertOperationInstance from "../database/operations/insert.operation";
 import { HttpExceptions } from "../exceptions";
 import { IFileContent } from "../interface/file.interface";
-import { checkKeyAndRetrieve, objectReplace } from "../utils/ocmmon.utils";
+import {
+  checkKeyAndRetrieve,
+  objectReplace,
+  sleep,
+} from "../utils/ocmmon.utils";
 import { getS3BucketPath, uploadToS3Buckets } from "../helpers/s3Bucket.helper";
 import { fileProcessConfig } from "../constant/status.constant";
 import { cvLogger } from "../libs/logger/logger.libs";
 import { prepareQueuePayloadForValidation } from "../utils/queue.utils";
+import MongoRepo from "../repository/mongo.repository";
+
+const mongoRepo = new MongoRepo();
 
 async function processCVFileService(content: Partial<IFileContent>) {
   const rabbitmqBroker = broker();
@@ -82,11 +89,23 @@ async function processCVFileService(content: Partial<IFileContent>) {
     );
   }
 
+  await sleep(10_000);
+  const result = await mongoRepo.getMatchedProfessor();
+  const deletedStatus = await mongoRepo.deleteAllMatchProfessor();
+  const statusId = isinsertResponse._id;
+  console.log(statusId)
+  const updateStatus = await mongoInsertInstance.updateOperation(
+    statusManager,
+    statusId
+  );
+
   return {
     brokerPublish: isPublish,
     brokerClose: isClosed,
-    isFileManagerCreate: isinsertResponse,
-    isStatusCreate: insertStatus,
+    // isFileManagerCreate: isinsertResponse,
+    // isStatusCreate: insertStatus,
+    isDatabaseOperationCompleted: updateStatus && deletedStatus,
+    allMatchedProfessor: result,
   } as const;
 }
 

@@ -27,7 +27,7 @@ const validationHandler = async (
 
       if (typeof pdfResult === "boolean" && pdfResult) {
         const queuePayload = Object.preventExtensions({
-          path: bucketPath,
+          path: finalPdfPath,
         });
 
         const channelBroker = getQueueInstance();
@@ -45,7 +45,7 @@ const validationHandler = async (
             consuemrLogger.info(`Warning PDF Has Some Issue : ${message}`);
 
             const queuePayload = Object.preventExtensions({
-              path: bucketPath,
+              path: finalPdfPath,
             });
 
             const channelBroker = getQueueInstance();

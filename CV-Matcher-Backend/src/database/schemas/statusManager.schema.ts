@@ -8,6 +8,7 @@ const statusManagerSchema = new mongoose.Schema({
       fileProcessConfig.PROCESSING,
       fileProcessConfig.VALIDATED,
       fileProcessConfig.VALIDATING,
+      fileProcessConfig.COMPLETED,
     ],
     default: "IDLE",
   },
@@ -23,5 +24,5 @@ const statusManagerSchema = new mongoose.Schema({
   },
 });
 
-const statusManager = mongoose.model('StatusManager',statusManagerSchema)
-export default statusManager
+const statusManager = mongoose.model("StatusManager", statusManagerSchema);
+export default statusManager;
