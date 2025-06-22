@@ -1,5 +1,6 @@
 import FileManager from "../schemas/fileManager.schema";
 import fileContent from "../../constant/file.constant";
+import { fileProcessConfig } from "../../constant/status.constant";
 
 class MongoInsert {
   public validateSchema(obj: object) {
@@ -15,12 +16,25 @@ class MongoInsert {
   }
 
   public async insertOperation(obj: object, manager: any) {
-    return new Promise(async (resolve, reject) => {
-      const isInsert = await manager.create({
-        ...obj,
-      });
-      resolve(isInsert ? true : false);
+    const isInsert = await manager.create({
+      ...obj,
     });
+    return isInsert;
+  }
+
+  public async updateOperation(manager: any, id: string) {
+    const updateStatus = await manager.updateOne(
+      {
+        _id: id,
+      },
+      {
+        status: fileProcessConfig.COMPLETED,
+      },
+      {
+        $new: true,
+      }
+    );
+    return updateStatus;
   }
 }
 

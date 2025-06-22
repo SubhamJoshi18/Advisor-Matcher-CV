@@ -14,4 +14,6 @@ const objectReplace = (obj: object) => {
   return responseObject;
 };
 
-export { checkKeyAndRetrieve, objectReplace };
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+export { checkKeyAndRetrieve, objectReplace, sleep };

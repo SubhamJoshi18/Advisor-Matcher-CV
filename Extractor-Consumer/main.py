@@ -12,6 +12,7 @@ def init_extractor_service():
         queue_instance.init_consumers(broker_channel)
 
 
+
     except Exception as service_error:
         print(f'Error Initiating the Extractor MicroService')
         print(f'ServiceError: Error Caused Due to : {service_error}')

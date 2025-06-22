@@ -10,4 +10,5 @@ export const fileProcessConfig = {
   PROCESSING: "PROCESSING",
   VALIDATING: "VALIDATING",
   VALIDATED: "VALIDATED",
+  COMPLETED : 'COMPLETED'
 };
